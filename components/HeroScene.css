@@ -324,3 +324,73 @@
   background: rgba(255, 255, 255, 0.35);
   box-shadow: 0 0 4px rgba(255, 255, 255, 0.15);
 }
+
+
+/* ---------------------------------------------------------------------
+   Mobile layout (phones / narrow viewports)
+   The rules above assume a wide desktop viewport: slide-title is a fixed
+   116px, and slide-1/2/3/4 position themselves with vw-based calc() that
+   only makes sense once 25vw/50vw are hundreds of pixels wide. On a phone
+   these collapse into unreadably narrow columns, and #slide-4 in
+   particular ends up mostly off-screen to the right. This block overrides
+   just enough to stack everything full-width and keep it all on screen.
+--------------------------------------------------------------------- */
+@media (max-width: 768px) {
+    .cinematic-container {
+          padding: 0 20px 28px 20px;
+    }
+
+  .slide-title {
+        font-size: clamp(36px, 11vw, 64px);
+        letter-spacing: 1px;
+        margin-bottom: 14px;
+  }
+
+  .slide-desc {
+        font-size: 14px;
+        line-height: 1.6;
+  }
+
+  .slide {
+        left: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        bottom: 16%;
+  }
+
+  #slide-1 .slide-title {
+        margin-left: 0;
+  }
+    #slide-1 .desc-row {
+          flex-direction: column;
+          gap: 14px;
+    }
+    #slide-1 .col-1,
+    #slide-1 .col-2 {
+          position: static;
+          left: auto;
+          margin-left: 0;
+          width: 100%;
+          max-width: 100%;
+    }
+
+  #slide-2 .slide-title {
+        margin-left: 0;
+  }
+    #slide-2 .slide-desc {
+          margin-left: 0;
+          width: 100%;
+          max-width: 100%;
+    }
+
+  #slide-4 {
+        max-width: 100%;
+  }
+
+  .header-nav {
+        gap: 12px;
+  }
+    .brand-tagline {
+          display: none;
+    }
+}
