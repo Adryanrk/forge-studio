@@ -442,6 +442,11 @@ export default function HeroScene() {
       sizes.width = window.innerWidth;
       sizes.height = window.innerHeight;
       camera.aspect = sizes.width / sizes.height;
+      // On narrow/portrait viewports (phones) the horizontal field of view shrinks
+      // faster than the vertical one, cropping the hero shapes that were framed
+      // for a wide desktop screen. Widen the (vertical) FOV as the aspect ratio
+      // drops below 1 so roughly the same horizontal extent stays visible.
+      camera.fov = camera.aspect < 1 ? Math.min(78, 50 / camera.aspect) : 50;
       camera.updateProjectionMatrix();
       renderer.setSize(sizes.width, sizes.height);
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
