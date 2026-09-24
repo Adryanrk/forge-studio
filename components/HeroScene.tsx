@@ -446,7 +446,7 @@ export default function HeroScene() {
       // faster than the vertical one, cropping the hero shapes that were framed
       // for a wide desktop screen. Widen the (vertical) FOV as the aspect ratio
       // drops below 1 so roughly the same horizontal extent stays visible.
-      camera.fov = camera.aspect < 1 ? Math.min(78, 50 / camera.aspect) : 50;
+      camera.fov = camera.aspect < 1 ? Math.min(88, 50 / camera.aspect) : 50;
       camera.updateProjectionMatrix();
       renderer.setSize(sizes.width, sizes.height);
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
@@ -602,7 +602,11 @@ export default function HeroScene() {
 
       const transitionProgress = Math.min(1.0, currentScroll / 0.28);
       const easeFactor = (Math.cos(transitionProgress * Math.PI) + 1.0) * 0.5;
-      const lookAtXOffset = -0.9 * easeFactor;
+            // Also pull the composition back toward center on narrow/portrait screens —
+            // the widened FOV alone isn't enough to keep the barbell (our widest shape)
+            // fully in frame, since this offset was tuned for a wide desktop view.
+            const aspectDamp = Math.min(1, camera.aspect);
+            const lookAtXOffset = -0.9 * easeFactor * aspectDamp;
       const targetLookAt = new THREE.Vector3(lookAtXOffset, -0.15, 0);
       const targetPos = new THREE.Vector3(x, y, z);
       camera.position.lerp(targetPos, 0.025);
