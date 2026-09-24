@@ -341,7 +341,7 @@
     }
 
   .slide-title {
-        font-size: clamp(36px, 11vw, 64px);
+        font-size: clamp(30px, 9vw, 54px);
         letter-spacing: 1px;
         margin-bottom: 14px;
   }
@@ -352,9 +352,9 @@
   }
 
   .slide {
-        left: 0 !important;
-        width: 100% !important;
-        max-width: 100% !important;
+        left: 20px !important;
+        width: calc(100% - 40px) !important;
+        max-width: calc(100% - 40px) !important;
         bottom: 16%;
   }
 
@@ -400,6 +400,6 @@
           flex-wrap: wrap;
     }
     .brand-tagline {
-          display: none;
+          font-size: 8px; letter-spacing: 1px;
     }
 }
