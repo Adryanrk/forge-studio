@@ -404,7 +404,7 @@ export default function HeroScene() {
       modelPivot.position.y = -0.4; // grounded stance
 
       const builders = [buildBarbellMesh, buildKettlebellMesh, buildPlateStackMesh, buildSinglePlateMesh];
-      const scaleMultipliers = [1.0, 0.85, 0.6, 1.0];
+      const scaleMultipliers = [0.82, 0.85, 0.6, 1.0];
 
       const built = builders.map((build, index) => {
         const material = new THREE.MeshStandardMaterial({
